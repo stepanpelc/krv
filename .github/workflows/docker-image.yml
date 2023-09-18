@@ -15,23 +15,7 @@ jobs:
 
     steps:
 
-    - name: Checkout
-      uses: actions/checkout@v3
-      with:
-        fetch-depth: 0 # required for github-action-get-previous-tag
-
-    - name: Checkout code
-      uses: actions/checkout@v2
-    - name: Create Release
-      id: create_release
-      uses: actions/create-release@v1
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      with:
-        tag_name: ${{ github.ref }}
-        release_name: Release ${{ github.ref }}
-        draft: false
-        prerelease: false
+    - uses: ncipollo/release-action@v1
 
     - name: Build and Push to DockerHub
       uses: MaximilianoBz/dockerhub-buildpush@v1.1
