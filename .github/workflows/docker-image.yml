@@ -42,4 +42,4 @@ jobs:
         username: stepanpelc
         access-token: ${{ secrets.dockerhub_secret }}
         force: true
-        chart-folder: helmchart
+        chart-folder: helmchart/krv
