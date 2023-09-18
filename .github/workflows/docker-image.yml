@@ -42,19 +42,10 @@ jobs:
         release_name: Release ${{ steps.semver.outputs.patch }}
 
     - name: Build and Push to DockerHub
-      # You may pin to the exact commit or the version.
-      # uses: MaximilianoBz/dockerhub-buildpush@372110d600041736063b948d05005b6039d8fb0c
       uses: MaximilianoBz/dockerhub-buildpush@v1.1
       with:
-        # Docker Registry Url, eg: docker.io
         registry_url: docker.io
-        # Docker Image Repository Name, eg: username/demo-app
         repository_name: k8s-krv
-        # Docker Login UserName, from: https://hub.docker.com/
         user_name: stepanpelc
-        # Docker Login Access Token, from: https://hub.docker.com/
         password: ${{ secrets.dockerhub_secret }}
-        # Image Build Version
         image_version: 1.0.0
-        # Docker File Directory, Default Current Directory (.)
-        # docker_file: # optional, default is .
