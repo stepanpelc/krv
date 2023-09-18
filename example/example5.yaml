@@ -1,0 +1,9 @@
+apiVersion: krv.sizek.cz/v1
+kind: Validation
+metadata:
+  name: example-validation-five
+spec:
+  name: "k8s-kb-cluster-[a-z]+"
+  namespace: "kube-system"
+  resource: "Configmap"
+  validation: []

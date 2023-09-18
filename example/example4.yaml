@@ -1,0 +1,13 @@
+apiVersion: krv.sizek.cz/v1
+kind: Validation
+metadata:
+  name: example-validation-four
+spec:
+  name: "k8s-kb-cluster-[a-z]+"
+  namespace: "kube-system"
+  resource: "Configmap"
+  validation:
+    - jsonPath: "data.cluster_env"
+      value: "[N]?PROD"
+    - jsonPath: "data.tenant_prefix"
+      value: "ps-sq[0-9]+"
