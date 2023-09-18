@@ -38,7 +38,7 @@ jobs:
       uses: bsord/helm-push@v4.1.0
       with:
         useOCIRegistry: true
-        registry-url:  oci://registry-1.docker.io/
+        registry-url:  oci://registry-1.docker.io/stepanpelc/k8s-krv
         username: stepanpelc
         access-token: ${{ secrets.dockerhub_secret }}
         force: true
