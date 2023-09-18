@@ -29,7 +29,7 @@ jobs:
       uses: MaximilianoBz/dockerhub-buildpush@v1.1
       with:
         registry_url: docker.io
-        repository_name: k8s-krv
+        repository_name: krv
         user_name: stepanpelc
         password: ${{ secrets.dockerhub_secret }}
         image_version: "${{ steps.release.outputs.tag_name }}"
