@@ -33,8 +33,8 @@ jobs:
     - name: Find and Replace
       uses: jacobtomlinson/gha-find-replace@v3
       with:
-        find: "appVersion:*."
-        replace: "appVersion: ${{ steps.semvers.outputs.patch }}"
+        find: "version:*."
+        replace: "version: ${{ steps.semvers.outputs.patch }}"
         include: "**Chart.yaml"
         regex: true
 
