@@ -48,5 +48,5 @@ jobs:
         repository_name: k8s-krv
         user_name: stepanpelc
         password: ${{ secrets.dockerhub_secret }}
-        image_version: ${{ steps.previoustag.outputs.tag }}
+        image_version: ${{ steps.semver.outputs.patch }}
 
