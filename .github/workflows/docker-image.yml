@@ -33,3 +33,8 @@ jobs:
         user_name: stepanpelc
         password: ${{ secrets.dockerhub_secret }}
         image_version: "${{ steps.release.outputs.tag_name }}"
+
+    - name: Run chart-releaser
+      uses: helm/chart-releaser-action@v1.5.0
+      env:
+        CR_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
