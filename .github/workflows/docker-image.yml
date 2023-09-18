@@ -30,7 +30,7 @@ jobs:
         # Docker Login UserName, from: https://hub.docker.com/
         user_name: stepanpelc
         # Docker Login Access Token, from: https://hub.docker.com/
-        password: ${{ secrets.DOCKERHUB_SECRET }}
+        password: ${{ secrets.dockerhub_secret }}
         # Image Build Version
         image_version: 1.0.0
         # Docker File Directory, Default Current Directory (.)
