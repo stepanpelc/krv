@@ -37,11 +37,26 @@ jobs:
         title: ${{ steps.semvers.outputs.patch }}
       env:
         GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
-    
-    - id: release
-      uses: rymndhng/release-on-push-action@master
+
+    - name: Create Release
+      id: create_release
+      uses: actions/create-release@latest
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
-        bump_version_scheme: minor
+        tag_name: ${{ steps.semvers.outputs.patch }}
+        release_name: Release ${{ steps.semvers.outputs.patch }}
+        body: |
+          Changes in this Release
+          - First Change
+          - Second Change
+        draft: false
+        prerelease: false
+    
+    # - id: release
+    #   uses: rymndhng/release-on-push-action@master
+    #   with:
+    #     bump_version_scheme: minor
 
     - name: Build and Push to DockerHub
       uses: MaximilianoBz/dockerhub-buildpush@v1.1
