@@ -22,7 +22,7 @@ jobs:
       id: previoustag
       uses: "WyriHaximus/github-action-get-previous-tag@v1"
       with:
-        fallback: 1.0.0 # Optional fallback tag to use when no tag can be found
+        fallback: 1.0.0
 
     - name: 'Get next minor version'
       id: semvers
@@ -80,9 +80,9 @@ jobs:
     - name: Build and Push to DockerHub
       uses: MaximilianoBz/dockerhub-buildpush@v1.1
       with:
-        registry_url: docker.io
-        repository_name: krv
-        user_name: stepanpelc
+        registry_url: ${{ vars.IMAGE_REPO_URL }}
+        repository_name: ${{ vars.IMAGE_REPO_NAME }}
+        user_name: ${{ vars.IMAGE_REPO_USER }}
         password: ${{ secrets.dockerhub_secret }}
         image_version: "${{ steps.semvers.outputs.patch }}"
 
@@ -90,8 +90,8 @@ jobs:
       uses: bsord/helm-push@v4.1.0
       with:
         useOCIRegistry: true
-        registry-url:  oci://registry-1.docker.io/stepanpelc
-        username: stepanpelc
+        registry-url:  ${{ vars.HELM_REPO_URL }}
+        username:  ${{ vars.HELM_REPO_USER }}
         access-token: ${{ secrets.dockerhub_secret }}
         force: true
         chart-folder: helmchart/krv
