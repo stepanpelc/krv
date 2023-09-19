@@ -52,6 +52,7 @@ jobs:
       with:
         commit_message: "Automaticaly update version to ${{ steps.semvers.outputs.patch }}"
         skip_checkout: false
+        skip_fetch: false
 
     # - name: Find and Replace
     #   uses: jacobtomlinson/gha-find-replace@v3
