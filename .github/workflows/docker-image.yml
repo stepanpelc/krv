@@ -38,6 +38,11 @@ jobs:
         include: "**Chart.yaml"
         regex: true
 
+    - name: Push changes
+      uses: ad-m/github-push-action@v0.6.0
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+
     # - name: Find and Replace
     #   uses: jacobtomlinson/gha-find-replace@v3
     #   with:
