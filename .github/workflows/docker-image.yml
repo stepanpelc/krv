@@ -62,10 +62,6 @@ jobs:
       with:
         tag_name: ${{ steps.semvers.outputs.patch }}
         release_name: Release ${{ steps.semvers.outputs.patch }}
-        body: |
-          Changes in this Release
-          - First Change
-          - Second Change
         draft: false
         prerelease: false
 
