@@ -22,28 +22,59 @@ The `krv` empowers you to ensure the quality and compliance of your Kubernetes r
 
 ## Quick start
 
+Install latest version via `helm`
+
 ```bash
 helm install <my-release> oci://registry-1.docker.io/stepanpelc/krv-helm
 ```
 
-Usage
+Check running pod.
+
+```bash
+kubectl get pod
+NAMESPACE            NAME                                                READY   STATUS    RESTARTS        AGE
+default              <my-release>-krv-helm-6b5fd4bdc7-g25ql              1/1     Running   0               5h39m
+```
+
+Check for value in `pod` resource.
+
+```bash
+kubectl get pod -n kube-system          etcd-kind-control-plane  -ojson | jq '.spec.containers[0].imagePullPolicy'
+"IfNotPresent"
+```
+
+Create first validation
 
 ```yaml
 apiVersion: krv.sizek.cz/v1
 kind: Validation
 metadata:
-  name: example-validation-one
+  name: etcd-pullpolicy
 spec:
-  name: ""
+  name: "etcd-kind-control-plane"
+  resource: "Pod"
   namespace: "kube-system"
-  resource: "Configmap"
   validation:
-    - jsonPath: "data.cluster_env"
-      value: "NPROD"
-    - jsonPath: "data.tenant_prefix"
-      value: "ps-sq002"
+    - jsonPath: "spec.containers[0].imagePullPolicy"
+      value: "IfNotPresent"
+```
+
+Apply validation and check existence
+
+```bash
+NAME              RESOURCE-NAMESPACE   RESOURCE   STATE     AGE
+etcd-pullpolicy   kube-system          Pod                  4s
+```
+
+Validations are checked in configured interval (default 5 minutes).
+
+
+```bash
+NAME              RESOURCE-NAMESPACE   RESOURCE   STATE     AGE
+etcd-pullpolicy   kube-system          Pod        OK        5m24s
 ```
 
 ## Contributing
-Kindly read [Contributing](CONTRIBUTING.md) before contributing. 
+Kindly read [Contributing](CONTRIBUTING.md) before contributing.
+
 We welcome PRs and issue reports.
