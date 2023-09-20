@@ -6,9 +6,9 @@ title: krv - Kubernetes Resource Validator
 author: Tao He
 layout: home
 ---
-Tool designed to simplify the validation of Kubernetes resources using the power of JSONPath. The `krv` provides a user-friendly and efficient solution to validate your in-cluster resources against custom-defined criteria.
+Tool designed to simplify the validation of Kubernetes resources using the power of JSONPath and regexp. The `krv` provides a user-friendly and efficient solution to validate your in-cluster resources against custom-defined criteria to enforce best practices, security policies, and compliance standards across your Kubernetes clusters. 
 
-With `krv`, you can harness the flexibility of JSONPath expressions to specify complex validation rules, making it easy to enforce best practices, security policies, and compliance standards across your Kubernetes clusters. Say goodbye to manual resource inspection and hello to automated, error-free validation with `krv`.
+Say goodbye to manual resource inspection and hello to automated, error-free validation with `krv`.
 
 Key Features:
 
@@ -19,7 +19,8 @@ Key Features:
 
 The `krv` empowers you to ensure the quality and compliance of your Kubernetes resources effortlessly, saving you time and reducing the risk of misconfigurations.
 
-Installation
+
+## Quick start
 
 ```bash
 helm install <my-release> oci://registry-1.docker.io/stepanpelc/krv-helm
@@ -42,3 +43,7 @@ spec:
     - jsonPath: "data.tenant_prefix"
       value: "ps-sq002"
 ```
+
+## Contributing
+Kindly read [Contributing](CONTRIBUTING.md) before contributing. 
+We welcome PRs and issue reports.
