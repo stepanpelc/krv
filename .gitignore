@@ -1,2 +1,3 @@
-requirements.txt
-examples/config
+docs/_site/
+docs/_draft/
+docs/.jekyll-cache/
