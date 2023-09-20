@@ -5,10 +5,13 @@ date: 2023-08-25
 
 ---
 
+## Prerequisities
+
+- golang v16 or later
+
 ## Build
 
 native build
-- at least GO v16 must be installed
 
 ```bash
 CGO_ENABLED=0 go build
@@ -33,6 +36,6 @@ docker build -t krv:latest . -f ./Dockerfile
 - `watcher` main logic of krv. Periodically run validations of defined resources. Also use  watch-cache which is used 
 for http GET operations, so it is not necessary to hit api-server everytime new incoming request comes 
 
-`docs` documentation for usage and development
+- `docs` documentation for usage and development
 
-`helmcharts` helm manifests
+- `helmcharts` helm manifests
