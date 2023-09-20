@@ -5,7 +5,7 @@
 replicaCount: 1
 
 image:
-  repository:  dockerhub.kb.cz/ps-sq002/speed/krv
+  repository:  stepanpelc/krv
   tag: 1.0.0-SNAPSHOT
   pullPolicy: Always
 
