@@ -15,5 +15,7 @@ Tool is released under license
 Installation
 
 ```bash
-`helm install krv  --namespace krv-system --values values.yaml .`  
+helm install <my-release> oci://registry-1.docker.io/stepanpelc/krv-helm
 ```
+
+Usage
