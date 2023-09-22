@@ -1,5 +1,5 @@
 ---
-name: Docker Image CI
+name: Docker and Helm Build and Release
 
 on:
   push:
@@ -19,19 +19,19 @@ jobs:
       with:
         fetch-depth: 0
 
-    - name: 'Get Previous tag'
+    - name: Get Previous tag
       id: previoustag
       uses: "WyriHaximus/github-action-get-previous-tag@v1"
       with:
         fallback: 1.0.0
 
-    - name: 'Get next minor version'
+    - name: Get next minor version
       id: semvers
       uses: "WyriHaximus/github-action-next-semvers@v1"
       with:
         version: ${{ steps.previoustag.outputs.tag }}
 
-    - name: Find and Replace
+    - name: Find and Replace in Chart version
       uses: jacobtomlinson/gha-find-replace@v3
       with:
         find: "version: .*"
@@ -39,16 +39,7 @@ jobs:
         include: "**Chart.yaml"
         regex: true
 
-    - name: Find and Replace
-      uses: jacobtomlinson/gha-find-replace@v3
-      with:
-        find: "tag: .*"
-        replace: "tag: ${{ steps.semvers.outputs.patch }}"
-        include: "**values.yaml"
-        regex: true
-
-
-    - name: Find and Replace
+    - name: Find and Replace in Chart version
       uses: jacobtomlinson/gha-find-replace@v3
       with:
         find: "appVersion: .*"
@@ -56,6 +47,13 @@ jobs:
         include: "**Chart.yaml"
         regex: true
 
+    - name: Find and Replace in Helm Chart values
+      uses: jacobtomlinson/gha-find-replace@v3
+      with:
+        find: "tag: .*"
+        replace: "tag: ${{ steps.semvers.outputs.patch }}"
+        include: "**values.yaml"
+        regex: true
 
     - name: Push changes
       uses: stefanzweifel/git-auto-commit-action@v4
