@@ -12,8 +12,9 @@ jobs:
     runs-on: self-hosted
     env:
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    outputs:  
+      version:  ${{ steps.semvers.outputs.patch }}
     steps:
-
     - uses: actions/checkout@v3
       with:
         fetch-depth: 0
@@ -96,7 +97,7 @@ jobs:
         repository_name: ${{ vars.IMAGE_REPO_NAME }}
         user_name: ${{ vars.IMAGE_REPO_USER }}
         password: ${{ secrets.dockerhub_secret }}
-        image_version: "${{ needs.prepare-release.semvers.outputs.patch }}"
+        image_version: "${{ needs.prepare-release.version }}"
 
     - name: Push Helm chart to OCI compatible registry (Github)
       uses: bsord/helm-push@v4.1.0
