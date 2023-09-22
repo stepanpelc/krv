@@ -6,7 +6,7 @@ replicaCount: 1
 
 image:
   repository:  stepanpelc/krv
-  tag: 1.1.11
+  tag: 1.1.12
   pullPolicy: Always
 
 imagePullSecrets:
