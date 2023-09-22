@@ -8,7 +8,7 @@ on:
     branches: [ main ]
 
 jobs:
-  build:
+  prepare-release:
     runs-on: self-hosted
     env:
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -81,6 +81,13 @@ jobs:
         title: ${{ steps.semvers.outputs.patch }}
       env:
         GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
+
+  build:
+    runs-on: self-hosted
+    needs: prepare-release
+    env:
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    steps:
     
     - name: Build and Push to DockerHub
       uses: MaximilianoBz/dockerhub-buildpush@v1.1
@@ -89,7 +96,7 @@ jobs:
         repository_name: ${{ vars.IMAGE_REPO_NAME }}
         user_name: ${{ vars.IMAGE_REPO_USER }}
         password: ${{ secrets.dockerhub_secret }}
-        image_version: "${{ steps.semvers.outputs.patch }}"
+        image_version: "${{ needs.prepare-release.semvers.outputs.patch }}"
 
     - name: Push Helm chart to OCI compatible registry (Github)
       uses: bsord/helm-push@v4.1.0
