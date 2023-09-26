@@ -1,0 +1,45 @@
+name: "Bug report"
+description: Report errors or unexpected behavior
+labels: [Issue-Bug, Needs-Triage]
+body:
+- type: markdown
+  attributes:
+    value: |
+      Please make sure to [search for existing issues](https://github.com/sizekcz/krv/issues) and [check the FAQ](https://github.com/microsoft/terminal/wiki/Frequently-Asked-Questions-(FAQ)) before filing a new one!
+
+- type: input
+  attributes:
+    label: krv version
+  validations:
+    required: true
+    
+- type: input
+  attributes:
+    label: Kubernetes distribution and version
+    placeholder: "minikube 1.22.3"
+    description: |
+      Please specify your kubernetes distribution.
+  validations:
+    required: true
+
+- type: textarea
+  attributes:
+    label: Steps to reproduce
+    placeholder: Tell us the steps required to trigger your bug.
+  validations:
+    required: true
+
+- type: textarea
+  attributes:
+    label: Expected Behavior
+    description: If you want to include screenshots, paste them into the markdown editor below.
+    placeholder: What were you expecting?
+  validations:
+    required: false
+
+- type: textarea
+  attributes:
+    label: Actual Behavior
+    placeholder: What happened instead?
+  validations:
+    required: true
