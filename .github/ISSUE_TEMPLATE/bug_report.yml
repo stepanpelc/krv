@@ -12,7 +12,9 @@ body:
     label: krv version
   validations:
     required: true
-    
+    options:
+      - 1.0.2
+### VERSION
 - type: input
   attributes:
     label: Kubernetes distribution and version

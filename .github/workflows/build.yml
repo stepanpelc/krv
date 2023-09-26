@@ -59,6 +59,16 @@ jobs:
         include: "**values.yaml"
         regex: true
 
+
+    - name: Add version to issue template
+      uses: jacobtomlinson/gha-find-replace@v3
+      with:
+        find: "### VERSION"
+        replace: "      - ${{ steps.semvers.outputs.patch }}\n### VERSION"
+        include: "**bug_report.yml"
+        regex: true
+
+
     - name: Push changes
       uses: stefanzweifel/git-auto-commit-action@v4
       with:
