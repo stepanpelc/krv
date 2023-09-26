@@ -14,10 +14,10 @@ body:
       - 1.0.2
       - 1.1.24
       - 1.1.25
-  validations:
-    required: true
       - 1.1.26
 ### VERSION
+  validations:
+    required: true
 - type: input
   attributes:
     label: Kubernetes distribution and version
