@@ -1,14 +1,17 @@
 ---
 name: "Feature Request/Idea"
-about: Suggest a new feature or improvement (this does not mean you have to implement it)
-title: ''
+description: Suggest a new feature or improvement (this does not mean you have to implement it)
 labels: Issue-Feature
-assignees: ''
 
----
+body:
+- type: markdown
+  attributes:
+    value: |
+      Please make sure to [search for existing issues](https://github.com/sizekcz/krv/issues) and [check the FAQ](https://github.com/microsoft/terminal/wiki/Frequently-Asked-Questions-(FAQ)) before filing a new one!
 
-# Description of the new feature/enhancement
-
-
-# Proposed technical implementation details (optional)
-
+- type: textarea
+  attributes:
+    label: Feature request
+    description: If you want to include screenshots, paste them into the markdown editor below.
+  validations:
+    required: false
