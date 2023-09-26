@@ -1,9 +1,0 @@
-apiVersion: krv.sizek.cz/v1
-kind: Validation
-metadata:
-  name: example-validation-six
-spec:
-  name: "istiod"
-  namespace: "istio-system"
-  resource: "Deployment"
-  validation: []
