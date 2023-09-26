@@ -24,10 +24,18 @@ body:
 
 - type: textarea
   attributes:
+    label: Deployed validation
+    description: Manifest of deployed validation
+    placeholder: Validation yaml
+  validations:
+    required: false
+
+- type: textarea
+  attributes:
     label: Steps to reproduce
     placeholder: Tell us the steps required to trigger your bug.
   validations:
-    required: true
+    required: false
 
 - type: textarea
   attributes:
