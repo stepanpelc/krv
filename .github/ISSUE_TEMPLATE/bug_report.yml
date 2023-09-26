@@ -27,6 +27,7 @@ body:
     label: Deployed validation
     description: Manifest of deployed validation
     placeholder: Validation yaml
+    render: shell
   validations:
     required: false
 
