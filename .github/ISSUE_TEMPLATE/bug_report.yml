@@ -15,6 +15,7 @@ body:
     options:
       - 1.0.2
       - 1.1.24
+      - 1.1.25
 ### VERSION
 - type: input
   attributes:
