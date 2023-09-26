@@ -4,7 +4,7 @@ ENV CGO_ENABLED=0
 ENV GOOS=linux
 
 WORKDIR /go/src/krv/
-COPY ./ /go/src/krv/
+COPY ./src /go/src/krv/
 RUN CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build
 
 
