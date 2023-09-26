@@ -16,6 +16,7 @@ body:
       - 1.1.25
   validations:
     required: true
+      - 1.1.26
 ### VERSION
 - type: input
   attributes:
