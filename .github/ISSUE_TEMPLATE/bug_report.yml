@@ -7,7 +7,7 @@ body:
     value: |
       Please make sure to [search for existing issues](https://github.com/sizekcz/krv/issues) and [check the FAQ](https://github.com/microsoft/terminal/wiki/Frequently-Asked-Questions-(FAQ)) before filing a new one!
 
-- type: input
+- type: dropdown
   attributes:
     label: krv version
   validations:
