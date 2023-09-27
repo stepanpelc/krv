@@ -92,7 +92,7 @@ etcd-pullpolicy   kube-system          Pod        OK        5m24s
 
 ### License
 
-Just the Docs is distributed by an [GPLv3 license](https://github.com/just-the-docs/just-the-docs/tree/main/LICENSE.txt).
+krv is distributed by an [GPLv3 license](https://github.com/sizekcz/krv/tree/main/LICENSE.txt).
 
 ### Contributing
 
@@ -113,7 +113,7 @@ email, or any other method with the owners of this repository before making a ch
 
 Just the Docs is committed to fostering a welcoming community.
 
-[View our Code of Conduct](https://github.com/just-the-docs/just-the-docs/tree/main/CODE_OF_CONDUCT.md) on our GitHub repository.
+[View our Code of Conduct](https://github.com/sizekcz/krv/tree/main/CODE_OF_CONDUCT.md) on our GitHub repository.
 
 ----
 
