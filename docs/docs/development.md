@@ -20,62 +20,47 @@ nav_order: 4
 
 ---
 
-Thank you for taking an interest in contributing to `krv` !
+## Runtime
 
-## Issues
+- container port exposed `8080`
+- kubernetes service cluster port `5000` e.g. krv.krv-system:5000
+- health check path `/health`
+- rest path for actual Validation statues `/validations`
 
-- Feel free to open an issue for any reason as long as you make it clear if the issue is about a bug/feature/question/comment.
-- Please spend some time giving due diligence to the issue tracker. Your issue might be a duplicate. If it is, please add your comment to the existing issue.
-- Remember, users might be searching for your issue in the future. So please give it a meaningful title to help others.
-- The issue should clearly explain the reason for opening the proposal if you have any, along with any relevant technical information.
-- For questions and bug reports, please include the following information:
-  - version of `krv` you are running along with the command line options you are using.
-  - version of Kubernetes you are running (from kubectl version or oc version for Openshift).
-  - Verbose log output, by setting the `-v 3` command line option.
+## Build
 
-## Bugs
+### Native build
 
-If you think you have found a bug please follow the instructions below.
+Prerequisities:
 
-- Open a [new bug](https://github.com/sizekcz/krv/issues/new) if a duplicate doesn't already exist.
-- Make sure to give as much information as possible in the following questions
-  - Overview
-  - How did you run `krv`?
-  - What happened?
-  - What did you expect to happen
-  - Environment
-  - Running processes
-  - Configuration files
-  - Anything else you would like to add
-- Set `-v 3` command line option and save the log output. Please paste this into your issue.
+- at least GO v16 must be installed
 
-## Features
+```go
+CGO_ENABLED=0 go build
+```
 
-We also use the GitHub discussions to track feature requests. If you have an idea to make `krv` even more awesome follow the steps below.
+### Docker build
 
-- Open a [new discussion](https://github.com/sizekcz/krv/discussions/new) if a duplicate doesn't already exist.
-- Remember users might be searching for your discussion in the future, so please give it a meaningful title to helps others.
-- Clearly define the use case, using concrete examples. For example, I type `this` and `krv` does `that`.
-- If you would like to include a technical design for your feature please feel free to do so.
+```bash
+docker build -t krv:latest . -f ./Dockerfile
+```
 
-### Questions
+## Install
 
-We also use the GitHub discussions to Q&A.
+### Quick install 
 
-- Open a [new discussion](https://github.com/sizekcz/krv/discussions/new) if a duplicate doesn't already exist.
-- Remember users might be searching for your discussion in the future, so please give it a meaningful title to helps others.
+`helm install krv  --namespace krv-system --values values.yaml .`  
 
-## Pull Requests
+### Customized install
+  
+`helm install krv  --namespace krv-system --values values.yaml . --set timeInterval=<time_in_minutes> --set logLevel=<error,warn,info,debug,trace>`
 
-We welcome pull requests!
-- Every Pull Request should have an associated Issue, unless you are fixing a trivial documentation issue.
-- Your PR is more likely to be accepted if it focuses on just one change.
-- Describe what the PR does. There's no convention enforced, but please try to be concise and descriptive. Treat the PR description as a commit message. Titles that start with "fix"/"add"/"improve"/"remove" are good examples.
-- Please add the associated Issue in the PR description.
-- Please include a comment with the results before and after your change.
-- There's no need to add or tag reviewers.
-- If a reviewer commented on your code or asked for changes, please remember to mark the discussion as resolved after you address it. PRs with unresolved issues should not be merged (even if the comment is unclear or requires no action from your side).
-- Please include a comment with the results before and after your change.
-- Your PR is more likely to be accepted if it includes tests (We have not historically been very strict about tests, but we would like to improve this!).
-- You're welcome to submit a draft PR if you would like early feedback on an idea or an approach.
-- Happy coding!
+## Project structure
+
+- `src/api/crd/v1` - Validation CRD v1 objects, structures and openapi definition
+- `src/client` - definition and initializtion of k8s api-server clients. Besides standard k8s clients (kubernetes, apiextensions, dynamic) it define and register our custom CRD client
+- `src/server/http` http listener handle requests. TEST api for health check and Validations status getter is defined here
+- `src/shared` - common variables and constans shared across another packages
+- `src/watcher` - main logic of krv. Periodically run validations of defined resources. Also use  watch-cache which is used for http GET operations, so it is not necessary to hit api-server everytime new incoming request comes
+- `helmcharts` - helm manifests
+- `docs` - documentation
