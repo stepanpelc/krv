@@ -17,6 +17,7 @@ body:
       - 1.1.26
       - 1.1.27
       - 1.1.28
+      - 1.1.29
 ### VERSION
   validations:
     required: true
