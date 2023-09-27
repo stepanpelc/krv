@@ -15,7 +15,6 @@ permissions:
 
 jobs:
   prepare-release:
-  
     runs-on: self-hosted
 
     env:
@@ -25,6 +24,8 @@ jobs:
       patch:  ${{ steps.semvers.outputs.patch }}
 
     steps:
+    - uses: AutoModality/action-clean@v1
+
     - uses: actions/checkout@v3
       with:
         fetch-depth: 0
@@ -106,6 +107,7 @@ jobs:
     needs: build
 
     steps:
+    
       - name: Checkout
         uses: actions/checkout@v3
       - name: Setup Pages
