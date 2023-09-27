@@ -16,7 +16,6 @@ jobs:
   prepare-release:
   
     runs-on: self-hosted
-    options: --user root
 
     env:
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
