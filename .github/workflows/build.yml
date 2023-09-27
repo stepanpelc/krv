@@ -95,8 +95,10 @@ jobs:
       env:
         GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
 
-  build-doc:
+  build-docs:
     runs-on: self-hosted
+    needs: build
+
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -112,11 +114,12 @@ jobs:
 
   # Deployment job
   deploy-doc:
+    runs-on: self-hosted
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
-    runs-on: ubuntu-latest
-    needs: build
+
+    needs: build-docs
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
